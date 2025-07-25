@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ititask/UI/home/home_screen.dart';
 import '../login/custom_text_field.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -17,15 +18,15 @@ class _SignUpFormState extends State<SignUpForm> {
   bool _isLoading = false;
 
   void _signUp() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      setState(() => _isLoading = true);
-      await Future.delayed(const Duration(seconds: 2));
-      setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Account created!')),
-      );
-    }
+  if (_formKey.currentState?.validate() ?? false) {
+    setState(() => _isLoading = true);
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() => _isLoading = false);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +39,10 @@ class _SignUpFormState extends State<SignUpForm> {
           const SizedBox(height: 24),
           Text(
             'Create Account',
-            style: Theme.of(context).textTheme.headline6,
           ),
           const SizedBox(height: 8),
           Text(
             'Sign up to get started',
-            style: Theme.of(context).textTheme.bodyText2,
           ),
           const SizedBox(height: 24),
           CustomTextField(

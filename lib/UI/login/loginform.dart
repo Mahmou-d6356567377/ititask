@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ititask/UI/home/home_screen.dart';
 import 'custom_text_field.dart';
 
 class LoginForm extends StatefulWidget {
@@ -15,16 +16,16 @@ class _LoginFormState extends State<LoginForm> {
   bool _isObscured = true;
   bool _isLoading = false;
 
-  void _login() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      setState(() => _isLoading = true);
-      await Future.delayed(const Duration(seconds: 2));
-      setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful!')),
-      );
-    }
+ void _login() async {
+  if (_formKey.currentState?.validate() ?? false) {
+    setState(() => _isLoading = true);
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() => _isLoading = false);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
