@@ -1,9 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ititask/UI/login/login_screen.dart';
 import 'package:ititask/bloc/auth/auth_bloc.dart';
+import 'package:ititask/firebase_options.dart';
 
-void main() {
+void main()async {
+    WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     BlocProvider(
       create: (_) => AuthBloc(),
